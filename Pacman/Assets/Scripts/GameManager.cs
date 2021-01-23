@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     //Objeto del panel wingame
     public GameObject panelWinGame;
 
+    //Objeto del panel lostgame
+    public GameObject panelLostGame;
+
     private void Awake()
     {
         Instance = this;
@@ -35,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             isGameActive = false;
             AudioManager.Instance.PlaySound(PlayerDeath);
+            StartCoroutine(ShowGameLostPanelCoroutine());
             SceneManager.LoadScene("Pacman");
         }
     }
@@ -52,7 +56,14 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ShowGameWinPanelCoroutine()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.0f);
+        panelWinGame.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public IEnumerator ShowGameLostPanelCoroutine()
+    {
+        yield return new WaitForSeconds(3.0f);
         panelWinGame.SetActive(true);
         Time.timeScale = 0;
     }
