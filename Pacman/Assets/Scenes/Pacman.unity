@@ -16446,6 +16446,7 @@ MonoBehaviour:
   isGameActive: 0
   panelWinGame: {fileID: 0}
   panelLostGame: {fileID: 0}
+  items: {fileID: 0}
 --- !u!4 &1719337155
 Transform:
   m_ObjectHideFlags: 0

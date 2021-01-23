@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     //Objeto del panel lostgame
     public GameObject panelLostGame;
 
+    //Array de los items
+    public GameObject items;
+
+    private bool itemsNotActive;
+
     private void Awake()
     {
         Instance = this;
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // Comprobar que el jugador ha perdido cuando un fantasma colisiona con él
     public void GameOver()
     {
         if(isGameActive)
@@ -43,10 +49,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Comprobar que los items del hierarchy están set active false
+    public void CheckItems()
+    {
+        if(items.activeInHierarchy == false)
+        {
+            itemsNotActive = true;
+        } 
+    }
+
+    // Comprobar que el jugador ha ganado cuando todos los items están set active false
     public void GameWin()
     {
         //todos los items a set active false
-        if(isGameActive)
+        if(isGameActive && itemsNotActive)
         {
             isGameActive = false;
             StartCoroutine(ShowGameWinPanelCoroutine());
@@ -54,6 +70,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Panel de victoria
     public IEnumerator ShowGameWinPanelCoroutine()
     {
         yield return new WaitForSeconds(3.0f);
@@ -61,6 +78,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    // Panel de derrota
     public IEnumerator ShowGameLostPanelCoroutine()
     {
         yield return new WaitForSeconds(3.0f);
