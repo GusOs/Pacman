@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
         itemCollision = GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider itemCollision)
+    private void OnTriggerEnter2D(Collider2D itemCollision)
     {
         if (itemCollision.CompareTag("Player"))
         {
