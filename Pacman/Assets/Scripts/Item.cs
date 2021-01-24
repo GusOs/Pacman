@@ -23,6 +23,8 @@ public class Item : MonoBehaviour
         {
             AudioManager.Instance.PlaySound(ItemCatch);
             this.gameObject.SetActive(false);
+            GameManager.Instance.CheckItems();
+            GameManager.Instance.GameWin();
         }
     }
 }
